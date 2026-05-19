@@ -316,6 +316,42 @@ p {
   margin-top: 2rem;
 }
 
+/* ===== CERTIFICATIONS SECTION ===== */
+.certifications-container {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.certification-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  min-width: 240px;
+  max-width: 320px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.certification-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(108, 99, 255, 0.18);
+}
+
+.certification-item h3 {
+  color: var(--primary);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.certification-item p {
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
 .education-item {
   flex: 1;
   min-width: 250px;
