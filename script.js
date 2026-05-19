@@ -73,6 +73,73 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    // Typing Animation
+const phrases = [
+    "I'm a Full Stack Developer.",
+    "I'm a Project Manager.",
+    "I'm a Web Developer.",
+];
+
+const companyPartners = [
+    // Add a company entry here when you want to show a partner logo below the hero.
+    // Example:
+    // { name: 'Satech', url: 'https://satech.com', logo: 'images/satech-logo.png' }
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingElement = document.querySelector('.typing-text');
+
+function renderCompanyLogos(companies) {
+    const logosContainer = document.querySelector('.company-logos');
+    if (!logosContainer) return;
+    if (!companies || companies.length === 0) {
+        logosContainer.style.display = 'none';
+        return;
+    }
+
+    logosContainer.style.display = 'flex';
+    logosContainer.innerHTML = companies.map(company => `
+        <a href="${company.url}" target="_blank" rel="noopener noreferrer" class="company-logo-link" title="${company.name}">
+            <img src="${company.logo}" alt="${company.name} logo">
+        </a>
+    `).join('');
+}
+
+function typeEffect() {
+    const currentPhrase = phrases[phraseIndex];
+    
+    if (isDeleting) {
+        typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+    }
+    
+    if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000);
+        return;
+    }
+    
+    if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeEffect, 500);
+        return;
+    }
+    
+    const speed = isDeleting ? 50 : 100;
+    setTimeout(typeEffect, speed);
+}
+
+if (typingElement) {
+    typeEffect();
+}
+
+renderCompanyLogos(companyPartners);
 
     // Animation on scroll
     const animateOnScroll = function() {
