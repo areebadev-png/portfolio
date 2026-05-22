@@ -1,17 +1,16 @@
 /* ===== CIRCULAR DESIGN SYSTEM ===== */
 :root {
-  --primary: #da429f;        /* bubblegum pink */
-  --primary-light: #ffc0cb;  /* pastel pink */
-  --secondary: #9370db;      /* medium purple */
-  --accent: #00ffff;         /* bright aqua */
-  --dark: #3d3d3d;           /* dark gray */
-  --light: #fff0f5;          /* lavender blush */
-  --lighter: #ffffff;
+  --primary: #da429f;
+  --primary-light: #ffc0cb;
+  --secondary: #9370db;
+  --accent: #00ffff;
+  --dark: #1a1a1a;
+  --light: #2a2a2a;
+  --lighter: #0d0d0d;
   --transition: all 0.4s ease;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   --border-radius: 20px;
 }
-
 /* ===== BASE STYLES ===== */
 * {
   margin: 0;
@@ -23,10 +22,36 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.7;
   color: var(--dark);
-  background-color: var(--lighter);
+  background-color: #000000;
   overflow-x: hidden;
 }
+body, section, .experience-item, .project-box, .education-item, .certification-item {
+  color: #ffffff;
+}
 
+.experience-item, .project-box, .education-item, .certification-item, .form-group input, .form-group textarea {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.form-group input, .form-group textarea {
+  background: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+.form-group input::placeholder, .form-group textarea::placeholder {
+  color: #888;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+footer {
+  background: #000000;
+}
 section {
   padding: 5rem 1.25rem;
   min-height: auto;
@@ -84,17 +109,18 @@ p {
 }
 
 .logo a {
-  display: block;
+  display: inline-block;
 }
 
 .logo img {
-  height: 60px;
   width: auto;
-  max-width: 150px;
+  height: auto;
+  max-width: 180px;
+  max-height: 70px;
   object-fit: contain;
   transition: transform 0.3s ease;
+  display: block;
 }
-
 .logo img:hover {
   transform: scale(1.05);
 }
@@ -207,85 +233,73 @@ p {
 }
 
 /* ===== EXPERIENCE SECTION ===== */
+/* ===== EXPERIENCE SECTION - MODERN GRID CARDS ===== */
 .experience-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 .experience-item {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  background: white;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+    border-radius: 20px;
+    padding: 1.8rem;
+    position: relative;
+    border-top: 3px solid var(--primary);
+    transition: all 0.3s ease;
 }
 
 .experience-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(218, 66, 159, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(218, 66, 159, 0.25);
 }
 
 .experience-date {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--primary);
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: 0 10px 20px rgba(218, 66, 159, 0.3);
-  z-index: 1;
-}
-
-.experience-content {
-  width: 100%;
+    background: var(--primary);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .experience-content h3 {
-  color: var(--primary);
-  margin-bottom: 0.5rem;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+    font-size: 1.3rem;
 }
 
 .experience-content h4 {
-  color: var(--dark);
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
+    color: #cccccc;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .experience-content ul {
-  text-align: left;
-  padding-left: 1.5rem;
-  list-style: none;
+    padding-left: 1.2rem;
+    color: #dddddd;
 }
 
 .experience-content li {
-  margin-bottom: 0.8rem;
-  position: relative;
-  padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
-.experience-content li::before {
-  content: '•';
-  color: var(--primary);
-  font-weight: bold;
-  position: absolute;
-  left: 0;
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .experience-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .experience-item {
+        padding: 1.5rem;
+    }
 }
-
 /* ===== PROJECTS SECTION ===== */
 .projects-container {
   display: flex;
@@ -296,7 +310,7 @@ p {
 }
 
 .project-box {
-  background: white;
+  background: #1a1a1a;
   border-radius: var(--border-radius);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -322,7 +336,7 @@ p {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: var(--dark);
+  color: #ffffff;
   transition: transform 0.3s ease;
 }
 
@@ -401,7 +415,7 @@ p {
   max-width: 300px;
   padding: 2rem;
   border-radius: var(--border-radius);
-  background: white;
+  background: #1a1a1a;
   box-shadow: var(--shadow);
   transition: var(--transition);
   text-align: center;
@@ -431,7 +445,7 @@ p {
 }
 
 .certification-item {
-  background: white;
+ background: #1a1a1a;
   padding: 1.5rem;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
@@ -478,7 +492,7 @@ p {
   font-family: inherit;
   font-size: 1rem;
   transition: var(--transition);
-  background: white;
+  background: #2a2a2a;
   box-shadow: var(--shadow);
 }
 
@@ -603,7 +617,7 @@ p {
 }
 
 .modal-content {
-  background: white;
+  background: #1a1a1a;
   padding: 3rem;
   border-radius: var(--border-radius);
   text-align: center;
